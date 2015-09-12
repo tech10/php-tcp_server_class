@@ -1,0 +1,12 @@
+# Deal with line breaks.
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Change php and .git files to unix line breaks on checkout.
+*.php text eol=lf
+.git* text eol=lf
+
+# Declare files that will always have CRLF line endings on checkout.
+*.md text eol=crlf
+*.txt text eol=crlf
