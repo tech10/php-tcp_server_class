@@ -1,7 +1,7 @@
 <?php
 //Example use for the tcp_server class, extremely basic use.
 
-include './tcp_server.php';
+include './tcp_server_class.php';
 
 //Binds to all IPV6 addresses, listens on port 6000,
 //sets up functions to process server connections,
