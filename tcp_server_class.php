@@ -1,7 +1,7 @@
 <?php
 
 //The beginning of the TCP server class.
-class tcp_server_class
+class tcp_server
 {
 
 //Some variable assignments.

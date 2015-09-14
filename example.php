@@ -11,7 +11,7 @@ include './tcp_server_class.php';
 //and sets the time interval to 1 indicating time checks will
 //be executed approximately every second.
 
-$server = new tcp_server_class('[::]', 6000, "process_connect", "process_disconnect", "process_recv", 8192, "process_time_checks", 1);
+$server = new tcp_server('[::]', 6000, "process_connect", "process_disconnect", "process_recv", 8192, "process_time_checks", 1);
 
 //Starts the server and checks the result, if it's false, the //server couldn't listen on the address and port given.
 
