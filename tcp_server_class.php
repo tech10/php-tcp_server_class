@@ -268,7 +268,8 @@ $sockets_r = $this->sockets;
 if (!count($this->sockets))
 return false;
 //Read data from any sockets who have sent it.
-@stream_select($sockets_r, $null, $null, $this->stream_select_timeout_sec, $this->stream_select_timeout_msec);
+if (@stream_select($sockets_r, $null, $null, $this->stream_select_timeout_sec, $this->stream_select_timeout_msec) === false)
+return false;
 //Here's our loop.
 foreach ($this->sockets as $socket)
 {
