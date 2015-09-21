@@ -43,7 +43,7 @@ $this->time_interval = $time_interval;
 
 public function start()
 {
-$this->server_socket = stream_socket_server("tcp://$this->bindaddr:$this->port", $errno, $errstr);
+$this->server_socket = @stream_socket_server("tcp://$this->bindaddr:$this->port", $errno, $errstr);
 if ($this->server_socket === false)
 //Socket creation and binding to the address failed.
 return false;
@@ -95,7 +95,7 @@ function send_raw($socket, $data)
 {
 if ($data === false)
 return false;
-$result = stream_socket_sendto($socket, $data);
+$result = @stream_socket_sendto($socket, $data);
 if ($result === -1)
 {
 //Writing probably failed.
