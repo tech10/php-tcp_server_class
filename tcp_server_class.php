@@ -91,7 +91,7 @@ $this->send($s_socket, $data);
 }
 
 //Send raw data without processing.
-function send_raw($socket, $data)
+public function send_raw($socket, $data)
 {
 if ($data === false)
 return false;
@@ -109,7 +109,7 @@ return true;
 }
 }
 
-function send($socket, $data)
+public function send($socket, $data)
 {
 if ($data === false)
 return false;
@@ -119,7 +119,7 @@ $data = trim($data) . "\r\n";
 return $this->send_raw($socket, $data);
 }
 
-function disconnect($socket)
+public function disconnect($socket)
 {
 //Do some checking so we don't have an infinite recursion.
 $called = $this->socket_data_get($socket, "disconnect_func_called");
@@ -144,7 +144,7 @@ return true;
 }
 
 //Receive raw data from a socket without processing the data.
-function recv_raw($socket)
+public function recv_raw($socket)
 {
 $data = @stream_socket_recvfrom($socket, $this->recv_length);
 if ($data === false || $data === "")
@@ -156,7 +156,7 @@ return false;
 return $data;
 }
 
-function recv($socket)
+public function recv($socket)
 {
 $data = $this->recv_raw($socket);
 if (!$data)
@@ -245,7 +245,7 @@ break;
 }
 
 //Receive data from all clients who have sent it, without timers.
-function recv_all()
+public function recv_all()
 {
 $null = null;
 //Set an array for sockets who data can be read from.
@@ -260,7 +260,7 @@ return true;
 }
 
 //Receive data from all clients who have sent it, and check all timers.
-function recv_all_with_time_check()
+public function recv_all_with_time_check()
 {
 $null = null;
 //Set an array for sockets who data can be read from.
@@ -283,7 +283,7 @@ call_user_func($this->time_interval_func, $this, $socket);
 return true;
 }
 
-function get_ip($socket)
+public function get_ip($socket)
 {
 if ($socket === false)
 return false;
