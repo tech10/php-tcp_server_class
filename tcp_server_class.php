@@ -104,6 +104,7 @@ return false;
 }
 else
 {
+if ($result)
 $this->socket_data_set($socket, "time_message_sent", microtime(true));
 return true;
 }
