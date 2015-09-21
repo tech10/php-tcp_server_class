@@ -82,7 +82,7 @@ return true;
 
 public function send_all($data, $socket = false)
 {
-foreach ($this->sockets as $s_index => $s_socket)
+foreach ($this->sockets as $s_socket)
 {
 if ($socket !== false && $s_socket === $socket)
 continue;
@@ -254,7 +254,7 @@ if (count($sockets_r) && !@stream_select($sockets_r, $null, $null, $this->stream
 return false;
 
 //Here's our loop.
-foreach ($sockets_r as $index => $socket)
+foreach ($sockets_r as $socket)
 $this->recv($socket);
 return true;
 }
@@ -270,7 +270,7 @@ return false;
 //Read data from any sockets who have sent it.
 @stream_select($sockets_r, $null, $null, $this->stream_select_timeout_sec, $this->stream_select_timeout_msec);
 //Here's our loop.
-foreach ($this->sockets as $index => $socket)
+foreach ($this->sockets as $socket)
 {
 if (array_search($socket, $sockets_r) !== false)
 $this->recv($socket);
@@ -300,7 +300,7 @@ return $ip;}
 
 public function disconnect_all($msg = "")
 {
-foreach ($this->sockets as $index => $socket)
+foreach ($this->sockets as $socket)
 {
 if ($msg)
 $this->send($socket, $msg);
@@ -403,10 +403,8 @@ return (microtime(true) - $this->socket_data_get($socket, "time_message_received
 //Check timers.
 private function time_check()
 {
-foreach ($this->sockets as $index => $socket)
-{
+foreach ($this->sockets as $socket)
 $this->time_check_protocol($socket);
-}
 }
 
 private function time_check_protocol($socket)
