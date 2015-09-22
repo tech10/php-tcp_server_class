@@ -150,7 +150,6 @@ public function recv_raw($socket)
 $data = @stream_socket_recvfrom($socket, $this->recv_length);
 if ($data === false || $data === "")
 {
-//The socket was likely closed, could be buggy, I'm not confident about this code.
 $this->disconnect($socket);
 return false;
 }
@@ -313,11 +312,15 @@ $this->disconnect($socket);
 public function stop()
 {
 $this->disconnect_all("Shutting down server.");
+@fclose($this->server_socket);
+$this->server_socket = false;
 }
 
 public function restart()
 {
 $this->disconnect_all("Restarting server.");
+@fclose($this->server_socket);
+$this->server_socket = false;
 }
 
 public function __destruct()
